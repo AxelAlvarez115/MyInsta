@@ -9,7 +9,7 @@
 
         if ($user && password_verify($_POST['password'], $user['password'])) {
             session_start();
-            $_SESSION['user']['user_id'] = $user['id'];
+            $_SESSION['user']['id'] = $user['id'];
             $_SESSION['user']['username'] = $user['username'];
             header("Location: ../index.php?success=loggedin");
         } else {

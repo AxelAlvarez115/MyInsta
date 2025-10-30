@@ -12,7 +12,7 @@
     <title>MyInsta</title>
 </head>
 <body class="bg-black text-white min-h-screen relative">
-    <?php include './partials/header.php'; ?>
+    <?php require_once './partials/header.php'; ?>
     <main class="p-4">
         <h1 class="text-xl font-bold">Welcome to MyInsta</h1>
         <?php
@@ -20,12 +20,12 @@
             $photos = getAllPhotos($pdo);
             foreach ($photos as $photo) {
                 echo '<div class="mb-4">';
-                echo '<img src="/Garage404/TP/MyInsta/assets/img/users/photos/' . htmlspecialchars($photo['link']) . '" alt="Photo" class="w-full rounded">';
+                echo '<img src="./assets/img/users/photos/' . htmlspecialchars($photo['link']) . '" alt="Photo" class="w-full rounded">';
                 echo '</div>';
             }
         ?>
     </main>
-    <?php include './partials/phone_menu.php'; ?>
-    <?php include './partials/footer.php'; ?>
+    <?php require_once './partials/phone_menu.php'; ?>
+    <?php require_once './partials/footer.php'; ?>
 </body>
 </html>

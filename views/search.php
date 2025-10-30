@@ -28,7 +28,7 @@ require_once '../utils/db/connection.php';
                     foreach ($results as $photo) {
                         $user = getUserById($photo['user_id'], $pdo);
                         echo '<div class="mb-4">';
-                        echo '<img src="/Garage404/TP/MyInsta/assets/img/users/photos/' . htmlspecialchars($photo['link']) . '" alt="Photo" class="w-full rounded">';
+                        echo '<img src="../assets/img/users/photos/' . htmlspecialchars($photo['link']) . '" alt="Photo" class="w-full rounded">';
                         echo '<p class="mt-2">Uploaded by: ' . htmlspecialchars($user['username']) . '</p>';
                         echo '</div>';
                     }

@@ -27,7 +27,7 @@ function createPopUp(action) {
         popUp.innerHTML = `
         <div class="p-6 w-96">
             <h2 class="text-xl font-bold mb-4">${isLogin ? 'Login' : 'Register'}</h2>
-            <form action="${isLogin ? './process/login.php' : './process/register.php'}" method="POST" class="flex flex-col items-center gap-4" id="${action}">
+            <form action="${isLogin ? '/MyInsta/process/login.php' : '/MyInsta/process/register.php'}" method="POST" class="flex flex-col items-center gap-4" id="${action}">
                 <div class="w-full">
                     <label class="block mb-2">Username</label>
                     <input type="text" name="username" class="w-full p-2 border border-gray-300 rounded" required>
@@ -55,10 +55,10 @@ function createPopUp(action) {
         popUp.innerHTML = `
         <div class="p-6 w-96">
             <h2 class="text-xl font-bold mb-4">Add Photo</h2>
-            <form action="/Garage404/TP/MyInsta/process/add_photo.php" method="POST" enctype="multipart/form-data" class="flex flex-col items-center gap-4" id="${action}">
+            <form action="/MyInsta/process/add_photo.php" method="POST" enctype="multipart/form-data" class="flex flex-col items-center gap-4" id="${action}">
                 <div class="w-full">
                     <label class="block mb-2">Select Photo</label>
-                    <input type="file" name="photo_link" accept="image/*" class="w-full p-2 border border-gray-300 rounded" required>
+                    <input type="file" name="image" accept="image/*" class="w-full p-2 border border-gray-300 rounded" required>
                 </div>
                 <div class="w-full">
                     <label class="block mb-2">Description</label>
