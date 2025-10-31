@@ -14,7 +14,18 @@
 <body class="bg-black text-white min-h-screen relative">
     <?php require_once './partials/header.php'; ?>
     <main class="p-4">
-        <h1 class="text-xl font-bold">Welcome to MyInsta</h1>
+       <form action="/action_page.php">
+        <h1 class="flex gap-4 items-center justify-center mt-[2%] md-[5%] w-full
+        text-[5vh] font-bold text-white">Hello, who are you?</h1>
+            <div class="flex gap-4 items-center justify-center mt-[2%] md-[5%] w-full">
+                <input
+                class="bg-blue-50 rounded-[12px] text-black text-xl font-semibold text-[5vh]"
+                type="text"
+                id="uname"
+                name="name"
+                placeholder="Connection..." />
+            </div>
+       </form>
         <?php
             require_once './utils/photos/get_photo.php';
             $photos = getAllPhotos($pdo);
