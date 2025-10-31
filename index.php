@@ -13,7 +13,6 @@
 <body class="bg-black text-white min-h-screen relative">
     <?php require_once './partials/header.php'; ?>
     <main class="p-4">
-        <?php include './views/profile.php'; ?>
         <h1 class="text-xl font-bold">Welcome to MyInsta</h1>
         <?php
             require_once './utils/photos/get_photo.php';
