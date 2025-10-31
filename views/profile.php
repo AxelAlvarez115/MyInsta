@@ -1,11 +1,37 @@
 <?php
+require_once '../utils/db/connection.php';
+session_start();
+if(isset($_GET['username'])){
+    $usernameParam = $_GET['username'];
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->execute([$usernameParam]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if(!$user){
+        die("Utilisateur introuvable.");
+    }
+}
+elseif(isset($_SESSION['user'])){
+    $user_id = $_SESSION['user']['id'];
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE id = ?");
+    $stmt->execute([$user_id]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+else {
+    die("Aucun profil à afficher.");
+}
+
+$username = $user['username'];
+$avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '../assets/img/default-avatar.png';
+?> <!-- j'ai utiliser Chatbt GPT iciii -->
+<!-- 
 session_start();
 if(!isset($_SESSION['user'])){
     header("Location: ../index.php");
     exit();
 }
 require_once '../utils/db/connection.php';
-?>
+ -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +46,6 @@ require_once '../utils/db/connection.php';
     <main class="p-4">
         <h1 class="text-xl font-bold">Welcome to MyInsta</h1>
         <?php
-            $user_id = $_SESSION['user']['id'];
-            $stmt = $pdo->prepare('SELECT * FROM users WHERE id = ?');
-            $stmt->execute([$user_id]);
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
             $username = $user['username'] ?? 'Utilisateur';
             $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '../assets/img/default-avatar.png';
         ?>
@@ -51,7 +73,7 @@ require_once '../utils/db/connection.php';
         <div class="grid grid-cols-3 gap-2">
             <?php
                 require_once '../utils/photos/get_photo.php';
-                $userId = $_SESSION['user']['id'];
+                $user_id = $user['id'];
                 $photos = getUserPhotos($userId, $pdo);
 
                 $count = 0;
