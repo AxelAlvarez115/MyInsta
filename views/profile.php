@@ -19,19 +19,52 @@ require_once '../utils/db/connection.php';
     <?php include '../partials/header.php'; ?>
     <main class="p-4">
         <h1 class="text-xl font-bold">Welcome to MyInsta</h1>
-        <div>
+        <?php
+            $user_id = $_SESSION['user']['id'];
+            $stmt = $pdo->prepare('SELECT * FROM users WHERE id = ?');
+            $stmt->execute([$user_id]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+            $username = $user['username'] ?? 'Utilisateur';
+            $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '../assets/img/default-avatar.png';
+        ?>
+
+        <section class="w-full max-w-md bg-white rounded-xl p-6 mb-8 text-gray-900 mx-auto">
+            <div class="flex items-center justify-between mb-6">
+                <div class="flex items-center gap-5">
+                    <img src="<?= $avatar ?>" alt="Avatar" class="w-24 h-24 rounded-full border border-gray-300 object-cover">
+                    <div>
+                        <h2 class="text-xl font-bold"><?= htmlspecialchars($username) ?></h2>
+                        <p class="text-sm text-gray-500 mt-1"> Photos : <span class="font-medium">0</span> &nbsp;|&nbsp; Likes : <span class="font-medium">0</span>
+                        </p>
+                    </div>
+                </div>
+                <button type="button" class="bg-gray-800 text-white text-sm py-2 px-4 rounded-lg font-medium">
+                    Modifier le profil
+                </button>
+            </div>
+
+            <button type="button" class="w-full bg-gray-700 text-white text-sm py-2 font-medium rounded-lg hover:bg-gray-600">
+                Ajouter une photo
+            </button>
+        </section>       
+       
+        <div class="grid grid-cols-3 gap-2">
             <?php
                 require_once '../utils/photos/get_photo.php';
                 $userId = $_SESSION['user']['id'];
                 $photos = getUserPhotos($userId, $pdo);
+
+                $count = 0;
                 foreach ($photos as $photo) {
-                    echo '<div class="mb-4">';
-                    echo '<h2 class="text-lg font-semibold mt-4 mb-2">' . htmlspecialchars($photo['description']) . '</h2>';
-                    echo '<img src="../assets/img/users/photos/' . htmlspecialchars($photo['link']) . '" alt="Photo" class="w-full rounded">';
+                    if ($count >= 9) break;
+                    echo '<div class="bg-black rounded-lg overflow-hidden aspect-square">';
+                    echo '<img src="../assets/img/users/photos/' . htmlspecialchars($photo['link']) . '" alt="' . htmlspecialchars($photo['description']) . '" class="w-full h-full object-cover">';
                     echo '</div>';
+                    $count++;
                 }
             ?>
         </div>
+
         <button onclick="location.href='../process/logout.php'">
             <img class="cursor-pointer h-10 w-10" src="../assets/img/icons/buttons/logout.svg" alt="logout">
         </button>
