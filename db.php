@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$db   = 'instagram';
+$db   = 'myinsta';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
