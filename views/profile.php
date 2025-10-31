@@ -50,22 +50,22 @@ require_once '../utils/db/connection.php';
             $avatar = !empty($user['avatar']) ? htmlspecialchars($user['avatar']) : '../assets/img/default-avatar.png';
         ?>
 
-        <section class="w-full max-w-md bg-white rounded-xl p-6 mb-8 text-gray-900 mx-auto">
+        <section class="w-full max-w-md bg-black rounded-xl p-6 mb-8 text-white mx-auto">
             <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center gap-5">
-                    <img src="<?= $avatar ?>" alt="Avatar" class="w-24 h-24 rounded-full border border-gray-300 object-cover">
+                    <img src="<?= $avatar ?>" alt="Avatar" class="w-24 h-24 rounded-full border border-white object-cover">
                     <div>
                         <h2 class="text-xl font-bold"><?= htmlspecialchars($username) ?></h2>
-                        <p class="text-sm text-gray-500 mt-1"> Photos : <span class="font-medium">0</span> &nbsp;|&nbsp; Likes : <span class="font-medium">0</span>
+                        <p class="text-sm text-white mt-1"> Photos : <span class="font-medium">0</span> &nbsp;|&nbsp; Likes : <span class="font-medium">0</span>
                         </p>
                     </div>
                 </div>
-                <button type="button" class="bg-gray-800 text-white text-sm py-2 px-4 rounded-lg font-medium">
+                <button type="button" class="bg-white text-gray-900 text-sm py-2 px-4 rounded-lg font-medium">
                     Modifier le profil
                 </button>
             </div>
 
-            <button type="button" class="w-full bg-gray-700 text-white text-sm py-2 font-medium rounded-lg hover:bg-gray-600">
+            <button type="button" class="w-full bg-white text-gray-900 text-sm py-2 font-medium rounded-lg hover:bg-white">
                 Ajouter une photo
             </button>
         </section>       
