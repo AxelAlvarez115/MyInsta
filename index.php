@@ -2,11 +2,6 @@
     require_once './utils/db/connection.php';
     session_start();
 ?>
-<?php
-    require_once './utils/db/connection.php';
-    session_start();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
