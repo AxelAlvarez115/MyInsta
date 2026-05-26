@@ -1,0 +1,149 @@
+/* ============================================================
+   MyInsta — Global styles
+   Complète Tailwind CDN (gradients, scrollbar, transitions…)
+   ============================================================ */
+
+:root {
+  --ig-bg:       #000000;
+  --ig-surface:  #111111;
+  --ig-surface2: #1a1a1a;
+  --ig-border:   #262626;
+  --ig-muted:    #8e8e8e;
+  --ig-grad:     linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+  --ig-grad-btn: linear-gradient(90deg, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+/* ── Reset / base ── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+               Helvetica, Arial, sans-serif;
+  background: var(--ig-bg);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar fine ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* ── Instagram gradient helpers ── */
+.ig-text {
+  background: var(--ig-grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.ig-bg { background: var(--ig-grad); }
+.ig-btn {
+  background: var(--ig-grad-btn);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 20px;
+  transition: opacity 0.15s;
+}
+.ig-btn:hover { opacity: 0.85; }
+
+/* ── Avatar avec ring gradient ── */
+.avatar-ring {
+  background: var(--ig-grad);
+  padding: 2px;
+  border-radius: 50%;
+  display: inline-flex;
+}
+.avatar-inner {
+  background: var(--ig-bg);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Frosted glass ── */
+.glass {
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* ── Input dark ── */
+.input-dark {
+  background: var(--ig-surface2);
+  border: 1px solid var(--ig-border);
+  color: #fff;
+  border-radius: 10px;
+  padding: 12px 14px;
+  width: 100%;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+.input-dark:focus    { outline: none; border-color: #555; }
+.input-dark::placeholder { color: var(--ig-muted); }
+
+/* ── Card ── */
+.card {
+  background: var(--ig-surface);
+  border: 1px solid var(--ig-border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ── Boutons icône ── */
+.btn-icon {
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-icon:hover { background: var(--ig-surface2); }
+
+/* ── Image transition ── */
+img { transition: opacity 0.2s; user-select: none; -webkit-user-drag: none; }
+
+/* ── Photo grid hover ── */
+.photo-thumb { position: relative; overflow: hidden; }
+.photo-thumb img { transition: transform 0.3s, opacity 0.3s; }
+.photo-thumb:hover img { transform: scale(1.04); opacity: 0.8; }
+
+/* ── Like button — animation bounce ── */
+@keyframes like-bounce {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.35); }
+  70%  { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+.like-bounce { animation: like-bounce 0.35s ease; }
+
+/* ── Flash message ── */
+.flash-enter { animation: flash-in 0.3s ease; }
+@keyframes flash-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ── Popup overlay backdrop ── */
+body.popup-open::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 40;
+}
+
+/* ── Séparateur section ── */
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--ig-border);
+  margin: 0;
+}

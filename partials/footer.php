@@ -1,3 +1,1 @@
-<footer class="bg-black text-center border-b mb-18 mx-4 p-4">
-    <p>&copy; 2024 MyInsta. All rights reserved.</p>
-</footer>
+<!-- Le padding-bottom est géré par pb-24 sur <main> -->
